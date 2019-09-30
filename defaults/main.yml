@@ -22,3 +22,6 @@ redhat_packages:
   - xclip
   - python3-requests
   # - hg # installs python2
+
+debian_packages:
+  - build-essential
