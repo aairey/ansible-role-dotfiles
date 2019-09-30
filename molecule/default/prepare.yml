@@ -1,0 +1,18 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Make sure .ssh directory exists
+      file:
+        path: '~/.ssh'
+        state: directory
+        mode: '0700'
+    - name: Copy SSH key for git checkout test
+      copy:
+        src: "~/.ssh/id_ed25519"
+        dest: "~/.ssh/id_ed25519"
+        mode: '0600'
+    - name: create cache
+      yum:
+        update_cache: true
+      when: ansible_os_family == 'RedHat'

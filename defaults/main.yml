@@ -1,0 +1,24 @@
+---
+# defaults file for aairey.dotfiles
+
+redhat_packages:
+  - '@Development Tools'
+  - '@C Development Tools and Libraries'
+  - '@RPM Development Tools'
+  - ruby-devel
+  - zlib-devel
+  - rubygems
+  - make
+  - cmake
+  - zsh
+  - python3-virtualenvwrapper
+  - tmux
+  - tmux-powerline
+  - vim-powerline
+  - powerline-docs
+  - python3-psutil
+  - util-linux-user
+  - ctags
+  - xclip
+  - python3-requests
+  # - hg # installs python2

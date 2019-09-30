@@ -1,0 +1,10 @@
+---
+- name: Cleanup
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Remove .ssh directory
+      file:
+        path: '~/.ssh'
+        state: absent
+      when: ansible_host != inventory_hostname
