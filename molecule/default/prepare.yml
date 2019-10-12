@@ -12,7 +12,3 @@
         src: "~/.ssh/id_ed25519"
         dest: "~/.ssh/id_ed25519"
         mode: '0600'
-    - name: create cache
-      yum:
-        update_cache: true
-      when: ansible_os_family == 'RedHat'
