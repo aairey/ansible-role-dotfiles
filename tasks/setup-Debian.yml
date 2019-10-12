@@ -3,5 +3,5 @@
 - name: Install Packages
   become: true
   package:
-    name: "{{ debian_packages }}"
+    name: "{{ debian_packages + common_packages }}"
     state: present

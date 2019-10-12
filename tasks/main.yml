@@ -13,12 +13,27 @@
     state: present
     user_install: false
 
+- name: Install virtualenvwrapper
+  become: true
+  pip:
+    name: virtualenvwrapper
+    state: present
+    executable: pip3
+    extra_args: '--user'
+
 - name: Install howdoi
   become: true
   pip:
     name: howdoi
     state: present
     executable: pip3
+    extra_args: '--user'
+
+- name: Install powerline
+  pip:
+    name: powerline-status
+    executable: pip3
+    extra_args: '--user'
 
 - name: Clone dotfiles repo
   git:

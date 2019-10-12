@@ -8,26 +8,29 @@ services:
   - docker
 
 env:
-  - ANSIBLE_VERSION=2.8
-    MOLECULE_DISTRO=fedora30
-  - ANSIBLE_VERSION=2.8
-    MOLECULE_DISTRO=centos7
-  - ANSIBLE_VERSION=2.8
-    MOLECULE_DISTRO=centos8
-  - ANSIBLE_VERSION=2.8
-    MOLECULE_DISTRO=debian9
-  - ANSIBLE_VERSION=2.8
-    MOLECULE_DISTRO=ubuntu1804
-  - ANSIBLE_VERSION=2.9
-    MOLECULE_DISTRO=fedora30
-  - ANSIBLE_VERSION=2.9
-    MOLECULE_DISTRO=centos7
-  - ANSIBLE_VERSION=2.9
-    MOLECULE_DISTRO=centos8
-  - ANSIBLE_VERSION=2.9
-    MOLECULE_DISTRO=debian9
-  - ANSIBLE_VERSION=2.9
-    MOLECULE_DISTRO=ubuntu1804
+  global:
+    ROLE_NAME: dotfiles
+  matrix:
+    - ANSIBLE_VERSION=2.8
+      MOLECULE_DISTRO=fedora30
+    - ANSIBLE_VERSION=2.8
+      MOLECULE_DISTRO=centos7
+    - ANSIBLE_VERSION=2.8
+      MOLECULE_DISTRO=centos8
+    - ANSIBLE_VERSION=2.8
+      MOLECULE_DISTRO=debian9
+    - ANSIBLE_VERSION=2.8
+      MOLECULE_DISTRO=ubuntu1804
+    - ANSIBLE_VERSION=2.9
+      MOLECULE_DISTRO=fedora30
+    - ANSIBLE_VERSION=2.9
+      MOLECULE_DISTRO=centos7
+    - ANSIBLE_VERSION=2.9
+      MOLECULE_DISTRO=centos8
+    - ANSIBLE_VERSION=2.9
+      MOLECULE_DISTRO=debian9
+    - ANSIBLE_VERSION=2.9
+      MOLECULE_DISTRO=ubuntu1804
 
 before_install:
   - sudo apt-get -qq update
@@ -35,8 +38,14 @@ install:
   - pip install tox-travis
 
 before_script:
+  # Use actual Ansible Galaxy role name for the project directory.
+  - cd ../
+    && mv ansible-role-$ROLE_NAME aairey.$ROLE_NAME
+    && cd aairey.$ROLE_NAME
+  # Set ssh key for git tests
   - echo -e "${SSH_KEY}" > ~/.ssh/id_ed25519
-  - chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_ed25519
+    && chmod 700 ~/.ssh
+    && chmod 600 ~/.ssh/id_ed25519
 script:
   - tox
 

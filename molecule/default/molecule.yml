@@ -10,6 +10,9 @@ lint:
       extends: default
       rules:
         truthy: disable
+        line-length:
+          max: 120
+          level: warning
 platforms:
   - name: ${MOLECULE_DISTRO:-fedora30}
     image: geerlingguy/docker-${MOLECULE_DISTRO:-fedora30}-ansible:latest
