@@ -14,18 +14,18 @@ common_packages:
 redhat_packages:
   - '@Development Tools'
   - '@RPM Development Tools'
+  - python3-devel
   - ruby-devel
   - zlib-devel
+  - util-linux-user
 
 fedora_packages:
   - '@C Development Tools and Libraries'
-  - python3-psutil
-  - python3-requests
-  - util-linux-user
   - xclip
 
 debian_packages:
   - build-essential
-  - git
+  - python3-dev
   - ruby-dev
+  - git
   - xclip

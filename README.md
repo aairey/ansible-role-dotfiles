@@ -1,6 +1,10 @@
 aairey.dotfiles
 ===============
 
+
+![build status](https://travis-ci.org/aairey/ansible-role-dotfiles.svg?branch=master)
+
+
 Installs aairey's dotfiles to the system for your user.
 
 Based on [this gist](https://gist.github.com/aairey/a48a38d47f2bc2b8d03188dcc53eacaa).
