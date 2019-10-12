@@ -25,3 +25,7 @@ redhat_packages:
 
 debian_packages:
   - build-essential
+  - rubygems
+  - zsh
+  - tmux
+  - xclip

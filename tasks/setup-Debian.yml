@@ -2,6 +2,6 @@
 # tasks/setup-Debian.yml
 - name: Install Packages
   become: true
-  apt:
+  package:
     name: "{{ debian_packages }}"
     state: present
