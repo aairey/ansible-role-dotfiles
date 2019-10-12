@@ -1,6 +1,7 @@
 ---
 galaxy_info:
-  author: Andy Airey
+  role_name: dotfiles
+  author: aairey
   description: Role to install aairey's dotfiles to the system,
     including dependencies
 
