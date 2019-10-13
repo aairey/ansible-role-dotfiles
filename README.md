@@ -2,7 +2,10 @@ aairey.dotfiles
 ===============
 
 
-![build status](https://travis-ci.org/aairey/ansible-role-dotfiles.svg?branch=master)
+[![Build Status](https://travis-ci.org/aairey/ansible-role-dotfiles.svg?branch=master)](https://travis-ci.org/aairey/ansible-role-dotfiles)
+[![ansible galaxy](https://img.shields.io/ansible/role/43968)](https://galaxy.ansible.com/aairey/dotfiles)
+[![role downloads](https://img.shields.io/ansible/role/d/43968)](https://galaxy.ansible.com/aairey/dotfiles)
+
 
 
 Installs aairey's dotfiles to the system for your user.
