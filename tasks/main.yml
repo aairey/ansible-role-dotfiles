@@ -58,7 +58,6 @@
     dest: '~/dotfiles/'
     version: master
     force: true
-  register: clone_dotfiles
   changed_when: false
 
 - name: Install dotdrop dependencies
@@ -77,11 +76,11 @@
     - skip_ansible_lint
   register: dotdrop_bootstrap
   failed_when: dotdrop_bootstrap.rc >= 2
-  changed_when: false
-  when: clone_dotfiles.changed
+  changed_when: dotdrop_bootstrap.rc > 0
 
-- name: TODO change shell to zsh
-  command: 'chsh -s /usr/bin/zsh'
+- name: Change shell to zsh
+  command: "chsh -s /usr/bin/zsh {{ ansible_env.USER }}"
+  become: yes
   tags:
     - skip_ansible_lint
   changed_when: false
