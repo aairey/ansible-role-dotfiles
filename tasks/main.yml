@@ -79,7 +79,7 @@
   changed_when: dotdrop_bootstrap.rc > 0
 
 - name: Change shell to zsh
-  command: "chsh -s /usr/bin/zsh {{ ansible_env.USER }}"
+  command: "chsh -s /usr/bin/zsh {{ ansible_user_id }}"
   become: yes
   tags:
     - skip_ansible_lint
