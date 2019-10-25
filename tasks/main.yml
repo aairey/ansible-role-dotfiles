@@ -69,14 +69,14 @@
 - name: Bootstrap dotdrop and install dotfiles using dotdrop
   shell: |
     dotdrop/bootstrap.sh
-    ./dotdrop.sh --cfg=./dotdrop.yml install
+    ./dotdrop.sh --cfg=./dotdrop.yml install -f
   args:
     chdir: '~/dotfiles'
   tags:
     - skip_ansible_lint
   register: dotdrop_bootstrap
   failed_when: dotdrop_bootstrap.rc >= 2
-  changed_when: dotdrop_bootstrap.rc > 0
+  changed_when: dotdrop_bootstrap.rc != 0
 
 - name: Change shell to zsh
   command: "chsh -s /usr/bin/zsh {{ ansible_user_id }}"
