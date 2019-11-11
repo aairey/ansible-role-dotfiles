@@ -1,4 +1,4 @@
 molecule==2.22
-docker==4.0.2
-selinux==0.1.6
+docker==4.1.0
+selinux==0.2.1
 tox==3.14.0

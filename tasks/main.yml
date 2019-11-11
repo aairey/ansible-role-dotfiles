@@ -14,6 +14,8 @@
 
 - name: Install antibody
   command: 'sh /tmp/antibody-install.sh -b /usr/local/bin'
+  tags:
+    - skip_ansible_lint
   become: true
   when: antibody_installscript.changed
 
