@@ -6,6 +6,17 @@
 - include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
+- name: Get antibody install script
+  get_url:
+    url: 'https://git.io/antibody'
+    dest: /tmp/antibody-install.sh
+  register: antibody_installscript
+
+- name: Install antibody
+  command: 'sh /tmp/antibody-install.sh -b /usr/local/bin'
+  become: true
+  when: antibody_installscript.changed
+
 - name: Install colorls
   become: true
   gem:
