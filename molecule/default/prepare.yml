@@ -12,3 +12,8 @@
         src: "~/.ssh/id_ed25519"
         dest: "~/.ssh/id_ed25519"
         mode: '0600'
+    - name: 'Install curl on Ubuntu, needed by vivid install script'
+      package:
+        name: curl
+        state: present
+      when: ansible_distribution == 'Ubuntu'
