@@ -36,6 +36,20 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: username.rolename, x: 42 }
 
+Local building/testing
+----------------------
+
+You can test this role locally by running tox (see tox.ini file for the configuration).  
+For example to run a test with Python 3.9 and Ansible 2.10, run:
+
+```bash
+# activate virtualenv which contains the test requirements
+# or `pip install -r test_requirements.txt`
+tox -e py39-ansible210
+```
+
+For more fine-grained test executions the different molecule commands can be used (`molecule lint`, `molecule converge`, ...) to save time in setting up the test env from scratch.
+
 License
 -------
 
