@@ -3,15 +3,16 @@ dependency:
   name: galaxy
   options:
     requirements-file: requirements.yml
-lint: |
-  set -e
-  yamllint .
-  ansible-lint .
-  flake8
+# unfortunately this scans everything including public collections pulled in
+# lint: |
+#   set -e
+#   yamllint .
+#   ansible-lint .
+#   flake8
 driver:
   name: podman
 platforms:
-  - name: ${MOLECULE_DISTRO:-fedora33}
+  - name: ${MOLECULE_DISTRO:-fedora33}-${TOX_ENVNAME:-notox}
     image: docker.io/geerlingguy/docker-${MOLECULE_DISTRO:-fedora33}-ansible:latest
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
@@ -22,7 +23,9 @@ provisioner:
   name: ansible
   config_options:
     defaults:
-      callback_whitelist: profile_tasks, timer
-      stdout_callback: yaml
+      interpreter_python: auto_silent
+      callback_enabled: profile_tasks, timer, yaml
+    ssh_connection:
+        pipelining: False # Fixes bug on github-actions, see https://github.com/ansible-community/molecule-podman/issues/2
 verifier:
   name: ansible
