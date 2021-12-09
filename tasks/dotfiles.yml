@@ -11,7 +11,6 @@
 - name: Install dotdrop dependencies
   pip:
     requirements: '~/dotfiles/dotdrop/requirements.txt'
-    executable: pip3
     extra_args: '--user'
 
 - name: Bootstrap dotdrop and install dotfiles using dotdrop

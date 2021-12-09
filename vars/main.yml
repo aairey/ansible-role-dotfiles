@@ -2,30 +2,29 @@
 # vars file for aairey.dotfiles
 
 common_packages:
-  - rubygems
-  - python3-pip
-  - make
   - cmake
   - ctags
-  # - hg # installs python2
-  - zsh
+  - make
+  - python3-pip
+  - rubygems
   - tmux
+  - xclip
+  - zsh
+  # - hg # installs python2
 
 redhat_packages:
   - '@Development Tools'
   - '@RPM Development Tools'
   - python3-devel
   - ruby-devel
-  - zlib-devel
   - util-linux-user
+  - zlib-devel
 
 fedora_packages:
   - '@C Development Tools and Libraries'
-  - xclip
 
 debian_packages:
   - build-essential
+  - git
   - python3-dev
   - ruby-dev
-  - git
-  - xclip

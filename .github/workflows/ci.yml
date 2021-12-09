@@ -8,12 +8,9 @@ name: CI
   schedule:
     - cron: "0 5 * * 0"
 
-env:
-  ROLE_NAME: "aairey.dotfiles"
-
 defaults:
   run:
-    working-directory: ${{ ROLE_NAME }}
+    working-directory: "aairey.dotfiles"
 
 jobs:
 
@@ -24,7 +21,7 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: ${{ ROLE_NAME }}
+          path: "aairey.dotfiles"
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
@@ -32,7 +29,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install yamllint ansible-lint
+        run: pip3 install yamllint ansible ansible-lint flake8
 
       - name: Lint code.
         run: |
@@ -45,19 +42,24 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [2.7, 3.6, 3.7, 3.8, 3.9]
+        python-version:
+          #- "3.8"
+          - "3.9"
+        ansible-version:
+          #- "2.10"
+          - "5"
         distro:
           - fedora33
-          - centos8
-          - centos7
-          - ubuntu2004
-          - debian10
+          #- centos8
+          #- centos7
+          #- ubuntu2004
+          #- debian10
 
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
         with:
-          path: ${{ ROLE_NAME }}
+          path: "aairey.dotfiles"
 
       - name: Set up Python.
         uses: actions/setup-python@v2
@@ -68,10 +70,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r test_requirements.txt
-        
+      
+      - name: Add SSH deploy key for git tasks
+        run: |
+          mkdir ~/.ssh
+          echo -e "${MOLECULE_SSH_KEY}" > ~/.ssh/id_ed25519
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/id_ed25519
+
       - name: Run Molecule tests.
         run: tox
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
+          ANSIBLE_VERSION: ${{ matrix.ansible-version }}
           MOLECULE_DISTRO: ${{ matrix.distro }}
