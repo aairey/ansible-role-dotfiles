@@ -12,7 +12,7 @@
   become: true
   when: antibody_installscript.changed
 
-- name: Install colorls
+- name: Install colorls globally
   become: true
   community.general.gem:
     name: colorls
@@ -20,7 +20,6 @@
     user_install: false
 
 - name: Install requests
-  become: true
   ansible.builtin.pip:
     name: requests
     state: present
@@ -28,7 +27,6 @@
     extra_args: '--user'
 
 - name: Install psutil
-  become: true
   ansible.builtin.pip:
     name: psutil
     state: present
@@ -36,7 +34,6 @@
     extra_args: '--user'
 
 - name: Install virtualenvwrapper
-  become: true
   ansible.builtin.pip:
     name: virtualenvwrapper
     state: present
@@ -44,7 +41,6 @@
     extra_args: '--user'
 
 - name: Install howdoi
-  become: true
   ansible.builtin.pip:
     name: howdoi
     state: present
@@ -52,6 +48,7 @@
     extra_args: '--user'
 
 - name: Install powerline-status globally
+  become: true
   ansible.builtin.pip:
     name: powerline-status
     state: present

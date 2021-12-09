@@ -1,11 +1,15 @@
 ---
 # tasks file for aairey.os-base
-- ansible.builtin.include_tasks: setup-RedHat.yml
+- name: Include tasks for RedHat based systems
+  ansible.builtin.include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- ansible.builtin.include_tasks: setup-Debian.yml
+- name: Include tasks for Debian based systems
+  ansible.builtin.include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- ansible.builtin.include_tasks: dotfiles-deps.yml
+- name: Install tools that shell relies on after setting dotfiles
+  ansible.builtin.include_tasks: dotfiles-deps.yml
 
-- ansible.builtin.include_tasks: dotfiles.yml
+- name: Install dotfiles
+  ansible.builtin.include_tasks: dotfiles.yml

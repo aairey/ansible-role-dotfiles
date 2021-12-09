@@ -2,3 +2,4 @@ roles:
   - name: markosamuli.linuxbrew
 collections:
   - name: community.general
+  - name: containers.podman

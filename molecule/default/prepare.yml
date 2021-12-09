@@ -12,6 +12,8 @@
         src: "~/.ssh/id_ed25519"
         dest: "~/.ssh/id_ed25519"
         mode: '0600'
+    - name: Gather facts
+      ansible.builtin.gather_facts:
     - name: 'Install curl on Ubuntu, needed by vivid install script'
       package:
         name: curl
