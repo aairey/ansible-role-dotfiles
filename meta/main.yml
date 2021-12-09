@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  owner: aairey
   role_name: dotfiles
   author: aairey
   description: Role to install aairey's dotfiles to the system,
@@ -7,12 +8,14 @@ galaxy_info:
 
   license: GPL-3.0-only
 
-  min_ansible_version: 2.8
+  min_ansible_version: 2.10
 
   platforms:
     - name: Fedora
       versions:
         - 30
+        - 33
+        - 35
     - name: EL
       versions:
         - 8

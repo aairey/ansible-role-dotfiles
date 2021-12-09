@@ -1,21 +1,18 @@
 ---
 dependency:
   name: galaxy
-driver:
-  name: docker
-lint:
-  name: yamllint
   options:
-    config-data:
-      extends: default
-      rules:
-        truthy: disable
-        line-length:
-          max: 120
-          level: warning
+    requirements-file: requirements.yml
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
+  flake8
+driver:
+  name: podman
 platforms:
-  - name: ${MOLECULE_DISTRO:-fedora30}
-    image: geerlingguy/docker-${MOLECULE_DISTRO:-fedora30}-ansible:latest
+  - name: ${MOLECULE_DISTRO:-fedora33}
+    image: docker.io/geerlingguy/docker-${MOLECULE_DISTRO:-fedora33}-ansible:latest
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -27,9 +24,5 @@ provisioner:
     defaults:
       callback_whitelist: profile_tasks, timer
       stdout_callback: yaml
-  lint:
-    name: ansible-lint
 verifier:
-  name: testinfra
-  lint:
-    name: flake8
+  name: ansible

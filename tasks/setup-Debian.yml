@@ -2,6 +2,6 @@
 # tasks/setup-Debian.yml
 - name: Install Packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ debian_packages + common_packages }}"
     state: present

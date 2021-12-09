@@ -1,0 +1,58 @@
+---
+- name: Get antibody install script
+  ansible.builtin.get_url:
+    url: 'https://git.io/antibody'
+    dest: /tmp/antibody-install.sh
+  register: antibody_installscript
+
+- name: Install antibody
+  ansible.builtin.command: 'sh /tmp/antibody-install.sh -b /usr/local/bin'
+  tags:
+    - skip_ansible_lint
+  become: true
+  when: antibody_installscript.changed
+
+- name: Install colorls
+  become: true
+  community.general.gem:
+    name: colorls
+    state: present
+    user_install: false
+
+- name: Install requests
+  become: true
+  ansible.builtin.pip:
+    name: requests
+    state: present
+    executable: pip3
+    extra_args: '--user'
+
+- name: Install psutil
+  become: true
+  ansible.builtin.pip:
+    name: psutil
+    state: present
+    executable: pip3
+    extra_args: '--user'
+
+- name: Install virtualenvwrapper
+  become: true
+  ansible.builtin.pip:
+    name: virtualenvwrapper
+    state: present
+    executable: pip3
+    extra_args: '--user'
+
+- name: Install howdoi
+  become: true
+  ansible.builtin.pip:
+    name: howdoi
+    state: present
+    executable: pip3
+    extra_args: '--user'
+
+- name: Install powerline-status globally
+  ansible.builtin.pip:
+    name: powerline-status
+    state: present
+    executable: pip3

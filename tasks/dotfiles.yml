@@ -1,0 +1,34 @@
+---
+- name: Clone dotfiles repo
+  ansible.builtin.git:
+    repo: https://github.com/aairey/dotfiles
+    accept_hostkey: true
+    dest: '~/dotfiles/'
+    version: master
+    force: true
+  changed_when: false
+
+- name: Install dotdrop dependencies
+  pip:
+    requirements: '~/dotfiles/dotdrop/requirements.txt'
+    executable: pip3
+    extra_args: '--user'
+
+- name: Bootstrap dotdrop and install dotfiles using dotdrop
+  ansible.builtin.shell: |
+    dotdrop/bootstrap.sh
+    ./dotdrop.sh --cfg=./dotdrop.yml install -f
+  args:
+    chdir: '~/dotfiles'
+  tags:
+    - skip_ansible_lint
+  register: dotdrop_bootstrap
+  failed_when: dotdrop_bootstrap.rc >= 2
+  changed_when: dotdrop_bootstrap.rc != 0
+
+- name: Change shell to zsh
+  ansible.builtin.command: "chsh -s /usr/bin/zsh {{ ansible_user_id }}"
+  become: yes
+  tags:
+    - skip_ansible_lint
+  changed_when: false
