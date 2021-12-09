@@ -3,14 +3,14 @@
 
 - name: Install the EPEL repository
   become: true
-  yum:
+  ansible.builtin.yum:
     name: epel-release
     state: present
   when: ansible_distribution == 'CentOS'
 
 - name: Install Packages
   become: true
-  package:
+  ansible.builtin.package:
     name: "{{ redhat_packages + common_packages }}"
     state: present
   retries: 5
@@ -20,7 +20,7 @@
 
 - name: Extra Packages on Fedora
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ fedora_packages }}"
     state: present
   when: ansible_distribution == 'Fedora'

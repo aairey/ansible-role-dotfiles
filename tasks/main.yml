@@ -1,99 +1,11 @@
 ---
 # tasks file for aairey.os-base
-- include_tasks: setup-RedHat.yml
+- ansible.builtin.include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
-- include_tasks: setup-Debian.yml
+- ansible.builtin.include_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- name: Get antibody install script
-  get_url:
-    url: 'https://git.io/antibody'
-    dest: /tmp/antibody-install.sh
-  register: antibody_installscript
+- ansible.builtin.include_tasks: dotfiles-deps.yml
 
-- name: Install antibody
-  command: 'sh /tmp/antibody-install.sh -b /usr/local/bin'
-  tags:
-    - skip_ansible_lint
-  become: true
-  when: antibody_installscript.changed
-
-- name: Install colorls
-  become: true
-  gem:
-    name: colorls
-    state: present
-    user_install: false
-
-- name: Install requests
-  become: true
-  pip:
-    name: requests
-    state: present
-    executable: pip3
-    extra_args: '--user'
-
-- name: Install psutil
-  become: true
-  pip:
-    name: psutil
-    state: present
-    executable: pip3
-    extra_args: '--user'
-
-- name: Install virtualenvwrapper
-  become: true
-  pip:
-    name: virtualenvwrapper
-    state: present
-    executable: pip3
-    extra_args: '--user'
-
-- name: Install howdoi
-  become: true
-  pip:
-    name: howdoi
-    state: present
-    executable: pip3
-    extra_args: '--user'
-
-- name: Install powerline
-  pip:
-    name: powerline-status
-    executable: pip3
-    extra_args: '--user'
-
-- name: Clone dotfiles repo
-  git:
-    repo: https://github.com/aairey/dotfiles
-    accept_hostkey: true
-    dest: '~/dotfiles/'
-    version: master
-    force: true
-  changed_when: false
-
-- name: Install dotdrop dependencies
-  pip:
-    requirements: '~/dotfiles/dotdrop/requirements.txt'
-    executable: pip3
-    extra_args: '--user'
-
-- name: Bootstrap dotdrop and install dotfiles using dotdrop
-  shell: |
-    dotdrop/bootstrap.sh
-    ./dotdrop.sh --cfg=./dotdrop.yml install -f
-  args:
-    chdir: '~/dotfiles'
-  tags:
-    - skip_ansible_lint
-  register: dotdrop_bootstrap
-  failed_when: dotdrop_bootstrap.rc >= 2
-  changed_when: dotdrop_bootstrap.rc != 0
-
-- name: Change shell to zsh
-  command: "chsh -s /usr/bin/zsh {{ ansible_user_id }}"
-  become: yes
-  tags:
-    - skip_ansible_lint
-  changed_when: false
+- ansible.builtin.include_tasks: dotfiles.yml

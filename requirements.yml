@@ -1,0 +1,4 @@
+roles:
+  - name: markosamuli.linuxbrew
+collections:
+  - name: community.general
