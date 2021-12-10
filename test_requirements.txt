@@ -1,6 +1,6 @@
 ansible-lint==5.3.1
 molecule==3.5.2
-docker==4.3.1
+docker==4.4.4
 selinux==0.2.1
 tox==3.24.4
 tox-gh-actions==2.8.1
