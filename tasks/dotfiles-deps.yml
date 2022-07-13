@@ -3,6 +3,7 @@
   ansible.builtin.get_url:
     url: 'https://git.io/antibody'
     dest: /tmp/antibody-install.sh
+    mode: 0755
   register: antibody_installscript
 
 - name: Install antibody

@@ -9,7 +9,7 @@
   changed_when: false
 
 - name: Install dotdrop dependencies
-  pip:
+  ansible.builtin.pip:
     requirements: '~/dotfiles/dotdrop/requirements.txt'
     extra_args: '--user'
 
