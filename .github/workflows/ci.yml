@@ -48,11 +48,12 @@ jobs:
           - "5"
           - "6"
         distro:
-          - fedora33
-          #- centos8
-          #- centos7
-          #- ubuntu2004
-          #- debian10
+          - fedora35
+          - fedora36
+          - centos7
+          - ubuntu2004
+          - ubuntu2204
+          - debian10
 
     steps:
       - name: Check out the codebase.

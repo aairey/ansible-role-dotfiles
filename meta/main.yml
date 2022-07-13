@@ -13,19 +13,19 @@ galaxy_info:
   platforms:
     - name: Fedora
       versions:
-        - 30
-        - 33
         - 35
         - 36
     - name: EL
       versions:
-        - 8
+        - 7
     - name: Debian
       versions:
         - stretch
+        - bullseye
     - name: Ubuntu
       versions:
         - bionic
+        - jammy
 
   galaxy_tags:
     - system
