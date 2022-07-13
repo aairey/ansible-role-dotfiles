@@ -21,6 +21,7 @@
     chdir: '~/dotfiles'
   tags:
     - skip_ansible_lint
+    - molecule-idempotence-notest
   register: dotdrop_bootstrap
   failed_when: dotdrop_bootstrap.rc >= 2
   changed_when: dotdrop_bootstrap.rc != 0
