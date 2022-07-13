@@ -73,7 +73,7 @@ jobs:
       - name: Add SSH deploy key for git tasks
         run: |
           mkdir ~/.ssh
-          echo -e "${MOLECULE_SSH_KEY}" > ~/.ssh/id_ed25519
+          echo -e "${{ secrets.MOLECULE_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_ed25519
 
