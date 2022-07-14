@@ -1,7 +1,12 @@
 ---
 # tasks/setup-Debian.yml
+- name: Update apt cache
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+
 - name: Install Packages
   become: true
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: "{{ debian_packages + common_packages }}"
     state: present
