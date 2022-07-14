@@ -22,6 +22,9 @@ redhat_packages:
 fedora_packages:
   - '@C Development Tools and Libraries'
   - util-linux-user
+  
+amazon_packages:
+  - util-linux-user
 
 debian_packages:
   - build-essential
