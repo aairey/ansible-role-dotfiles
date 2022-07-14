@@ -18,7 +18,17 @@
   community.general.gem:
     name: colorls
     state: present
+    version: 1.4.4
     user_install: false
+  when: ansible_distribution == 'Debian' and ansible_distribution_version == '10'
+
+- name: Install colorls globally
+  become: true
+  community.general.gem:
+    name: colorls
+    state: present
+    user_install: false
+  when: not ansible_distribution == 'Debian' and ansible_distribution_version == '10'
 
 - name: Install requests
   ansible.builtin.pip:
