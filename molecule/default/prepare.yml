@@ -3,19 +3,20 @@
   hosts: all
   tasks:
     - name: Make sure .ssh directory exists
-      file:
+      ansible.builtin.file:
         path: '~/.ssh'
         state: directory
         mode: '0700'
     - name: Copy SSH key for git checkout test
-      copy:
+      ansible.builtin.copy:
         src: "~/.ssh/id_ed25519"
         dest: "~/.ssh/id_ed25519"
         mode: '0600'
     - name: Gather facts
       ansible.builtin.gather_facts:
     - name: 'Install curl on Ubuntu, needed by vivid install script'
-      package:
+      ansible.builtin.apt:
         name: curl
         state: present
+        update_cache: yes
       when: ansible_distribution == 'Ubuntu'
