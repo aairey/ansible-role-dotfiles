@@ -8,6 +8,13 @@
     state: present
   when: ansible_distribution == 'CentOS'
 
+- name: Enable EPEL repository
+  become: true
+  ansible.builtin.command: amazon-linux-extras install epel -y
+  tags:
+    - skip_ansible_lint
+  when: ansible_distribution == 'Amazon'
+
 - name: Install Packages
   become: true
   ansible.builtin.package:
@@ -24,3 +31,10 @@
     name: "{{ fedora_packages }}"
     state: present
   when: ansible_distribution == 'Fedora'
+
+- name: Extra Packages on Amazon Linux
+  become: true
+  ansible.builtin.yum:
+    name: "{{ amazon_packages }}"
+    state: present
+  when: ansible_distribution == 'Amazon'
