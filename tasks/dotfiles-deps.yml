@@ -13,7 +13,7 @@
   become: true
   when: antibody_installscript.changed
 
-- name: Install colorls globally
+- name: Install colorls globally on Debian 10
   become: true
   community.general.gem:
     name: colorls
@@ -51,12 +51,21 @@
     executable: pip3
     extra_args: '--user'
 
+- name: Install howdoi on CentOS 7
+  ansible.builtin.pip:
+    name: howdoi<2.0
+    state: present
+    executable: pip3
+    extra_args: '--user'
+  when: ansible_distribution == 'CentOS' and ansible_distribution_version == '7'
+    
 - name: Install howdoi
   ansible.builtin.pip:
     name: howdoi
     state: present
     executable: pip3
     extra_args: '--user'
+  when: not ansible_distribution == 'CentOS' and ansible_distribution_version == '7'
 
 - name: Install powerline-status globally
   become: true
