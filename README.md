@@ -2,7 +2,7 @@ aairey.dotfiles
 ===============
 
 
-[![Build Status](https://travis-ci.org/aairey/ansible-role-dotfiles.svg?branch=master)](https://travis-ci.org/aairey/ansible-role-dotfiles)
+[![Build Status](https://github.com/aairey/ansible-role-dotfiles/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/aairey/ansible-role-dotfiles/actions)
 [![ansible galaxy](https://img.shields.io/ansible/role/43968)](https://galaxy.ansible.com/aairey/dotfiles)
 [![role downloads](https://img.shields.io/ansible/role/d/43968)](https://galaxy.ansible.com/aairey/dotfiles)
 
