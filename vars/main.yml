@@ -3,7 +3,6 @@
 
 common_packages:
   - cmake
-  - ctags
   - make
   - python3-pip
   - rubygems
@@ -15,6 +14,7 @@ common_packages:
 redhat_packages:
   - '@Development Tools'
   - '@RPM Development Tools'
+  - ctags
   - python3-devel
   - ruby-devel
   - util-linux-user
@@ -25,6 +25,7 @@ fedora_packages:
 
 debian_packages:
   - build-essential
+  - exuberant-ctags
   - git
   - python3-dev
   - ruby-dev
