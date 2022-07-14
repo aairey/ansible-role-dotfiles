@@ -27,7 +27,7 @@
   changed_when: dotdrop_bootstrap.rc != 0
 
 - name: Change shell to zsh
-  ansible.builtin.command: "chsh -s /usr/bin/zsh {{ ansible_user_id }}"
+  ansible.builtin.command: "/usr/bin/chsh -s /usr/bin/zsh {{ ansible_user_id }}"
   become: yes
   tags:
     - skip_ansible_lint
