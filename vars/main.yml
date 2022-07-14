@@ -7,6 +7,7 @@ common_packages:
   - python3-pip
   - rubygems
   - tmux
+  - util-linux
   - xclip
   - zsh
   # - hg # installs python2
@@ -17,7 +18,6 @@ redhat_packages:
   - ctags
   - python3-devel
   - ruby-devel
-  - util-linux-user
   - zlib-devel
 
 fedora_packages:
