@@ -30,6 +30,15 @@
     user_install: false
   when: not ansible_distribution == 'Debian' and ansible_distribution_version == '10'
 
+- name: Update pip to latest version
+  ansible.builtin.pip:
+    name: pip
+    state: latest
+    executable: pip3
+    extra_args: '--user'
+  tags:
+    - skip_ansible_lint
+
 - name: Install requests
   ansible.builtin.pip:
     name: requests
