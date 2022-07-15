@@ -2,7 +2,7 @@ ansible-lint==5.4.0
 molecule==4.0.0
 docker==4.4.4
 selinux==0.2.1
-tox==3.24.4
+tox==3.25.1
 tox-gh-actions==2.9.1
 podman==3.2.1
 flake8==4.0.1
