@@ -1,5 +1,5 @@
 ansible-lint==5.4.0
-molecule==3.5.2
+molecule==3.6.1
 docker==4.4.4
 selinux==0.2.1
 tox==3.24.4
