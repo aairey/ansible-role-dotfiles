@@ -12,6 +12,8 @@
   ansible.builtin.pip:
     requirements: '~/dotfiles/dotdrop/requirements.txt'
     extra_args: '--user'
+  tags:
+    - molecule-idempotence-notest
 
 - name: Bootstrap dotdrop and install dotfiles using dotdrop
   ansible.builtin.shell: |
@@ -20,6 +22,8 @@
   args:
     chdir: '~/dotfiles'
   tags:
+    # bug in older versions of python and pip
+    # https://github.com/ansible/ansible/issues/28952
     - skip_ansible_lint
     - molecule-idempotence-notest
   register: dotdrop_bootstrap

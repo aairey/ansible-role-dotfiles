@@ -13,6 +13,7 @@
   ansible.builtin.command: amazon-linux-extras install epel -y
   tags:
     - skip_ansible_lint
+    - molecule-idempotence-notest
   when: ansible_distribution == 'Amazon'
 
 - name: Install Packages
