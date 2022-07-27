@@ -1,18 +1,4 @@
 ---
-- name: Get antibody install script
-  ansible.builtin.get_url:
-    url: 'https://git.io/antibody'
-    dest: /tmp/antibody-install.sh
-    mode: 0755
-  register: antibody_installscript
-
-- name: Install antibody
-  ansible.builtin.command: 'sh /tmp/antibody-install.sh -b /usr/local/bin'
-  tags:
-    - skip_ansible_lint
-  become: true
-  when: antibody_installscript.changed
-
 - name: Install colorls globally on Debian 10
   become: true
   community.general.gem:

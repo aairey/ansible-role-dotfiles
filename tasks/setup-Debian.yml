@@ -4,6 +4,8 @@
   become: true
   ansible.builtin.apt:
     update_cache: true
+  tags:
+    - molecule-idempotence-notest
 
 - name: Install Packages
   become: true
